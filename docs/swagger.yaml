@@ -1,0 +1,60 @@
+basePath: /
+definitions:
+  models.Heartbeat:
+    properties:
+      appName:
+        type: string
+      databaseOnline:
+        type: boolean
+      message:
+        type: string
+      releaseCreatedAt:
+        type: string
+      releaseVersion:
+        type: string
+      requestId:
+        type: string
+      slugCommit:
+        type: string
+    type: object
+  models.Todo:
+    properties:
+      message:
+        type: string
+      requestId:
+        type: string
+    type: object
+host: herokuapp.com
+info:
+  contact:
+    name: SuperNova
+    url: https://gus.lightning.force.com/lightning/r/ADM_Scrum_Team__c/a00EE00000PCtdSYAT/view
+  description: Micro-service written in Golang that reads data from a PostgreSQL database.
+  title: Orch-Rest-Template
+  version: 1.0.0
+paths:
+  /api/heartbeat:
+    get:
+      description: Shows if database is online, dyno metadata, and health status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Heartbeat'
+      summary: Get health status of service
+  /api/todo:
+    get:
+      description: Show the full list of todos.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Todo'
+            type: array
+      summary: Get list of todos
+swagger: "2.0"

@@ -1,0 +1,44 @@
+version: "3"
+services:
+  #nginx-proxy:
+    #image: nginx-proxy:latest
+    #container_name: nginx-proxy
+    #build: ./nginx/
+    #expose:
+      #- 8880
+    #ports:
+      #- 8880:8880
+
+  go-rest-service-postgres:
+    image: postgres:12.10
+    network_mode: bridge
+    container_name: go-rest-service-postgres
+    volumes:
+      - go-rest-data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+
+  go-rest-service-app:
+    image: go-rest-service:latest
+    network_mode: bridge
+    container_name: go-rest-service-app
+    build: .
+    env_file:
+      - .env
+    expose:
+      - 8881
+    ports:
+      - 8881:8881
+    depends_on:
+      - go-rest-service-postgres
+    links:
+      - go-rest-service-postgres
+
+volumes:
+  go-rest-data:
