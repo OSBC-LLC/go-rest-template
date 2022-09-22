@@ -1,6 +1,6 @@
 build:
 	@echo "Building go-rest-service"
-	@go build -o bin/orch-rest-template -v .
+	@go build -o bin/go-rest-template -v .
 	@echo "done."
 
 test:

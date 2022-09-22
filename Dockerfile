@@ -7,6 +7,6 @@ RUN make
 
 FROM alpine:3.14
 EXPOSE 8880
-COPY --from=build /app/bin/orch-rest-template /orch-rest-template
+COPY --from=build /app/bin/go-rest-template /go-rest-template
 COPY .env .env
-CMD [ "/orch-rest-template"]
+CMD [ "/go-rest-template"]

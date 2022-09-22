@@ -1,4 +1,4 @@
-# Orchestration Rest micro service template written in Go
+# Go Rest micro service template written in Go
 - Go REST micro service layout with go-chi router, internal controllers, and pkg services
 - Internal config to connect to a Postgres database as well as runtime variables pulled from env
 - Unit tests on config and all routes
